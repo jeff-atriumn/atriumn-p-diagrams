@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.p-diagram {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 20px;
+    text-align: center;
+    position: relative; /* Needed for arrow positioning */
+}
+
+.inputs, .outputs {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.function {
+    background-color: #add8e6;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h2 {
+    margin: 0 0 20px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Arrow from inputs to function */
+.inputs::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    border: 10px solid transparent;
+    border-left-color: #000;
+    border-right: none;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+
+/* Arrow from function to outputs */
+.outputs::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    border: 10px solid transparent;
+    border-right-color: #000;
+    border-left: none;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+
+.arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 1px solid black; /* Line part of the arrow */
+}
+
+.arrow-inputs-function, .arrow-function-outputs {
+    top: 50%; /* Align arrows vertically to the middle */
+}
+
+.arrow-inputs-function {
+    left: calc(33% - 10px); /* Adjust based on your grid layout */
+    width: calc(33% + 20px); /* Length of the arrow line */
+    border-right: 1px solid black; /* Vertical line part */
+}
+
+.arrow-function-outputs {
+    right: calc(33% - 10px); /* Adjust based on your grid layout */
+    width: calc(33% + 20px); /* Length of the arrow line */
+    border-left: 1px solid black; /* Vertical line part */
+}
+
+/* Arrowheads */
+.arrow-inputs-function::after, .arrow-function-outputs::after {
+    content: '';
+    position: absolute;
+    top: -5px; /* Adjust for the arrowhead size */
+    border: 5px solid transparent; /* Size of the arrowhead */
+    border-left-color: black; /* Arrowhead color */
+}
+
+.arrow-function-outputs::after {
+    left: 0;
+    border-left-color: transparent;
+    border-right-color: black; /* Arrowhead facing right */
+}
+
+.arrow-inputs-function::after {
+    right: 0;
+    border-left-color: black; /* Arrowhead facing right */
+}
