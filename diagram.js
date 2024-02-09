@@ -1,4 +1,32 @@
+import inquirer from "inquirer";
+import fs from "fs/promises";
 
+// Define the questions for the CLI
+const questions = [
+  {
+    type: "input",
+    name: "title",
+    message: "What is the title of the slideshow?",
+  },
+  {
+    type: "input",
+    name: "inputs",
+    message:
+      "What are the inputs to your system? (Enter a comma-separated list)",
+  },
+];
+
+inquirer.prompt(questions).then(async (answers) => {
+  try {
+    let inputs = answers.inputs.split(",").map((input) => input.trim());
+    answers.inputs = inputs;
+
+    // Write the answers to a JavaScript file
+    const content = `const data = ${JSON.stringify(answers, null, 2)};`;
+    await fs.writeFile("./data.js", content, "utf8");
+
+    // Create the HTML file based on a template
+    const html = `
     <!DOCTYPE html>
     <html lang="en" prefix="og: http://ogp.me/ns#">
         <head>
@@ -159,4 +187,9 @@
                 </script>
             </body>
         </html>
-    
+    `;
+    await fs.writeFile("./index.html", html, "utf8");
+  } catch (err) {
+    console.error(err);
+  }
+});
