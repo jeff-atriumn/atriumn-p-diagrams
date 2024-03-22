@@ -1,18 +1,16 @@
 const data = {
-  title: "user story dev",
-  inputs: ["acceptance criteria", "coding standards"],
-  outcomes: [
-    "deployable artifact",
-    "passing tests",
-    "updated validation plan",
-    "satisfied acceptance criteria",
-    "satisfied customer",
+  title: "defect management",
+  inputs: [
+    "pre-production defects",
+    "production defects",
+    "user-reported defects",
+    "monitoring anomalies",
   ],
+  outcomes: ["prioritized defects", "satisfied customers"],
   noise: [
-    "changing requirement",
-    "availability of team members",
-    "external dependencies",
-    "satisfied acceptance criteria",
-    "technical debt",
+    "unclear impact",
+    "varying severity understanding",
+    "technical details",
   ],
+  controls: ["process", "monitoring"],
 };

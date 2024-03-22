@@ -1,151 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns#">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>{{title}} P Diagram</title>
-    <meta name="description" content="Generated Atriumn P-Diagram." />
-
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext"
-      rel="stylesheet"
-    />
-
     <link
       rel="stylesheet"
-      type="text/css"
-      media="all"
-      href="static/css/webslides.css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
+    <style>
+      .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 10px;
+        border-radius: 15px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(to bottom right, #f9f9f9, #e0e0e0);
+        margin: 10px;
+        height: 30vh; /* Set a fixed height for all boxes */
+      }
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="all"
-      href="static/css/svg-icons.css"
-    />
+      #system {
+        color: white;
+        background: linear-gradient(to bottom right, #000000, #434343);
+      }
 
-    <link
-      rel="shortcut icon"
-      sizes="16x16"
-      href="static/images/favicons/favicon.png"
-    />
-    <link
-      rel="shortcut icon"
-      sizes="32x32"
-      href="static/images/favicons/favicon-32.png"
-    />
-    <link
-      rel="apple-touch-icon icon"
-      sizes="76x76"
-      href="static/images/favicons/favicon-76.png"
-    />
-    <link
-      rel="apple-touch-icon icon"
-      sizes="120x120"
-      href="static/images/favicons/favicon-120.png"
-    />
-    <link
-      rel="apple-touch-icon icon"
-      sizes="152x152"
-      href="static/images/favicons/favicon-152.png"
-    />
-    <link
-      rel="apple-touch-icon icon"
-      sizes="180x180"
-      href="static/images/favicons/favicon-180.png"
-    />
-    <link
-      rel="apple-touch-icon icon"
-      sizes="192x192"
-      href="static/images/favicons/favicon-192.png"
-    />
-
-    <!-- Android -->
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#333333" />
+      .column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around; /* Distribute the boxes evenly */
+        height: 100vh;
+      }
+    </style>
   </head>
   <body>
-    <header role="banner">
-      <nav role="navigation">
-        <p class="logo">
-          <a href="{{title}}-p-diagram.html" title="Atriumn P-Diagram"
-            >P Diagram</a
-          >
-        </p>
-        <ul>
-          <li class="github">
-            <a
-              rel="external"
-              href="https://github.com/jeff-atriumn/atriumn-p-diagrams"
-              title="Github"
-            >
-              <svg class="fa-github">
-                <use xlink:href="#fa-github"></use>
-              </svg>
-              <em>Atriumn</em>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <main role="main">
-      <article id="webslides" class="vertical">
-        <section>
-          <div class="wrap">
-            <div class="grid vertical-align">
-              <div class="column">
-                <h4>
-                  <svg class="fa-envelope">
-                    <use xlink:href="#fa-envelope"></use>
-                  </svg>
-                  <strong>Inputs</strong>
-                </h4>
-                <ul class="description">
-                  <li>
-                    <p>WebSlides Components</p>
-                  </li>
-                </ul>
-              </div>
-              <div class="column">
-                <figure>
-                  <img
-                    class="aligncenter"
-                    src="static/images/setup.png"
-                    alt="System Function"
-                  />
-                </figure>
-              </div>
-              <div class="column">
-                <h4>
-                  <svg class="fa-cubes">
-                    <use xlink:href="#fa-cubes"></use>
-                  </svg>
-                  <strong>Outcomes</strong>
-                </h4>
-                <p>
-                  The best way to <strong>inspire with your content</strong> is
-                  to connect on a personal level:
-                </p>
-                <ul class="description">
-                  <li>
-                    Background images:
-                    <a href="http://unsplash.com">Unsplash</a>.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
-    </main>
-    <script src="static/js/webslides.js"></script>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-3 d-flex justify-content-center column">
+          <div class="box" id="inputs"><h5>INPUTS</h5></div>
+        </div>
+        <div
+          class="col-6 d-flex flex-column justify-content-between align-items-center column"
+        >
+          <div class="box" id="noise"><h5>NOISE</h5></div>
+          <div class="box" id="system"><h5>SYSTEM</h5></div>
+          <div class="box" id="controls"><h5>CONTROLS</h5></div>
+        </div>
+        <div class="col-3 d-flex justify-content-center column">
+          <div class="box" id="outputs"><h5>OUTPUTS</h5></div>
+        </div>
+      </div>
+    </div>
+    <script src="data.js"></script>
     <script>
-      window.ws = new WebSlides();
-    </script>
+      function createList(data, id) {
+        const box = document.getElementById(id);
+        const ul = document.createElement("ul");
+        data.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          ul.appendChild(li);
+        });
+        box.appendChild(ul);
+      }
 
-    <script defer src="static/js/svg-icons.js"></script>
+      createList(data.inputs, "inputs");
+      createList(data.noise, "noise");
+      createList(data.controls, "controls");
+      createList(data.outcomes, "outputs");
+    </script>
   </body>
 </html>
